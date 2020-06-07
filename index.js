@@ -29,7 +29,7 @@ client.on('ready', () => {
     console.log('UXSoc Bot' + " version " + version + " is now up and running <3");
 
     const morning = new cron.CronJob('0 0 9 * * 1-5', () => {
-        const morningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
+        const morningMessage = client.channels.cache.find(channel => channel.id === '719117625518587924');
         const morningEmbed = new Discord.MessageEmbed()
             .setColor('#008ed4')
             .setTitle('Good Morning UXers! Wishing @everyone a good day ahead :)')
@@ -40,7 +40,7 @@ client.on('ready', () => {
     morning.start();
 
     const job = new cron.CronJob('0 0 12 * * 1,3,5', () => {
-        const announcement = client.channels.cache.find(channel => channel.id === '714833144410538024');
+        const announcement = client.channels.cache.find(channel => channel.id === '719117625518587924');
         announcement.send(callAnnouncement());
     });
 
@@ -48,7 +48,7 @@ client.on('ready', () => {
 
 
     const evening = new cron.CronJob('0 0 21 * * 1-5', () => {
-        const eveningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
+        const eveningMessage = client.channels.cache.find(channel => channel.id === '719117625518587924');
         const eveningEmbed = new Discord.MessageEmbed()
             .setColor('#008ed4')
             .setTitle('Good Night UXers! Rest well and see you again tomorrow :)')
@@ -186,8 +186,8 @@ client.on('message', async message => {
                     )
                     .setTimestamp();
 
-                message.channel.send("Hi " + member + "! Check your DMs :)");
-                message.author.send("Hi " + member + "! Here is the list of UXSoc Bot commands available!");
+                message.channel.send("Hi @" + member + "! Check your DMs :)");
+                message.author.send("Hi @" + member + "! Here is the list of UXSoc Bot commands available!");
                 message.author.send(Embed);
                 message.author.send(Embed2);
                 break;
@@ -207,8 +207,8 @@ client.on('message', async message => {
                     )
                     .setTimestamp();
 
-                message.channel.send("Hi " + member2 + "! Check your DMs :)");
-                message.author.send("Hi " + member2 + "! Here are some instructions on how you can get started :)");
+                message.channel.send("Hi @" + member2 + "! Check your DMs :)");
+                message.author.send("Hi @" + member2 + "! Here are some instructions on how you can get started :)");
                 message.author.send(help);
                 break;
 
@@ -224,14 +224,14 @@ client.on('message', async message => {
                     )
                     .setTimestamp();
 
-                message.channel.send("Hi " + member3 + "! Check your DMs :)");
-                message.author.send("Hi " + member3 + "! Here some frequently asked questions in navigating our server:");
+                message.channel.send("Hi @" + member3 + "! Check your DMs :)");
+                message.author.send("Hi @" + member3 + "! Here some frequently asked questions in navigating our server:");
                 message.author.send(help2);
                 break;
 
             case 'info':
                 const member4 = message.member.user.tag;
-                message.channel.send("Hello there " + member4 + "! I am UXSoc Bot version 1.0 :) \nType !help to get started.");
+                message.channel.send("Hello there @" + member4 + "! I am UXSoc Bot version 1.0 :) \nType !help to get started.");
         }
     }
 });
