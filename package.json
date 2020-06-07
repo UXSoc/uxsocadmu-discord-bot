@@ -2,6 +2,9 @@
   "name": "uxs-discord-bot",
   "version": "1.0.0",
   "description": "The official Discord Bot of User Expeience Society",
+  "engines": {
+    "node": "14.3.0"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,9 +20,13 @@
   },
   "homepage": "https://github.com/UXSoc/uxs-discord-bot#readme",
   "dependencies": {
+    "@discordjs/opus": "^0.3.2",
     "cron": "^1.8.2",
     "discord.js": "^12.2.0",
+    "discord.js-commando": "^0.10.0",
     "dotenv": "^8.2.0",
-    "ytdl-core": "^2.1.7"
+    "ffmpeg": "0.0.4",
+    "opusscript": "0.0.7",
+    "ytdl-core": "^2.1.5"
   }
 }
