@@ -246,7 +246,7 @@ require('dotenv').config();
 
 const botClient = new Discord.Client();
 
-const TOKEN = process.env.TOKEN;
+const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 
 const prefix = "!";
 var version = "1.0";
@@ -465,4 +465,4 @@ botClient.on('message', async message => {
     }
 
 });
-botClient.login(TOKEN);
+botClient.login(DISCORD_BOT_TOKEN);
