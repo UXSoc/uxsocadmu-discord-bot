@@ -120,13 +120,13 @@ client.on('message', async message => {
                 break;
 
             case 'skip':
-                let server = servers[message.guild.id];
+                server = servers[message.guild.id];
                 if (server.dispatcher) server.dispatcher.end();
                 message.channel.send("Awwww...Skipped song!")
                 break;
 
             case 'stop':
-                let server = servers[message.guild.id];
+                server = servers[message.guild.id];
                 if (message.guild.voice.connection) {
                     for (let i = server.queue.length - 1; i >= 0; i--) {
                         server.queue.splice(i, 1);
@@ -141,19 +141,19 @@ client.on('message', async message => {
                 break;
 
             case 'resume':
-                let server = servers[message.guild.id];
+                server = servers[message.guild.id];
                 server.dispatcher.resume();
                 message.channel.send("Let's rock and roll!")
                 break;
 
             case 'pause':
-                let server = servers[message.guild.id];
+                // let server = servers[message.guild.id];
                 server.dispatcher.pause();
                 message.channel.send("Pausing the song now! Will wait for you to play it again hihi")
                 break;
 
             case 'queue':
-                let server = servers[message.guild.id];
+                server = servers[message.guild.id];
                 let output = "";
                 let count = 1;
 
