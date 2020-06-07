@@ -56,12 +56,11 @@ client.on('ready', () => {
     });
 
     evening.start();
-});
+}).catch(console.error);
 
 client.on("guildMemberAdd", member => {
-    member.send("Welcome to official Discord sever of User Experience Society '20-'21! Type in !help to any channel in the server to get started :)")
-        .catch(console.error);
-});
+    member.send("Welcome to official Discord sever of User Experience Society '20-'21! Type in !help to any channel in the server to get started :)");
+}).catch(console.error);
 
 client.on('message', async message => {
 
@@ -234,6 +233,6 @@ client.on('message', async message => {
                 message.channel.send("Hello there " + member4 + "! I am UXSoc Bot version 1.0 :) \nType !help to get started.");
         }
     }
-});
+}).catch(console.error);
 
-client.login(DISCORD_BOT_TOKEN);
+client.login(DISCORD_BOT_TOKEN).catch(console.error);
