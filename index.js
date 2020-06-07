@@ -10,6 +10,7 @@ const botClient = new Discord.Client();
 const TOKEN = process.env.DISCORD_BOT_TOKEN;
 
 const prefix = "!";
+
 var version = "1.0";
 
 var servers = {};
@@ -20,7 +21,7 @@ function callAnnouncement() {
         .setTitle('ANNOUNCEMENTS')
         .setAuthor("From the Mafia")
         .setDescription('1. UXSoc Apps are still running. Tap more people to apply. \n 2. We have a meeting this week! Please wait for further announcements')
-        .setTimestamp()
+        .setTimestamp();
     return embed;
 }
 
