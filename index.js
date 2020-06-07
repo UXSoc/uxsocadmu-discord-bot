@@ -57,12 +57,12 @@ client.on('ready', () => {
 
     try {
         const evening = new cron.CronJob('0 0 21 * * 1-5', () => {
-            const morningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
-            const morningEmbed = new Discord.MessageEmbed()
+            const eveningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
+            const eveningEmbed = new Discord.MessageEmbed()
                 .setColor('#008ed4')
                 .setTitle('Good Night UXers! Rest well and see you again tomorrow :)')
-                .setTimestamp()
-            morningMessage.send(morningEmbed);
+                .setTimestamp();
+            eveningMessage.send(eveningEmbed);
         });
 
         evening.start();
@@ -254,6 +254,6 @@ client.on('message', async message => {
     } catch (err) {
         console.error(err);
     }
-})
+});
 
 client.login(DISCORD_BOT_TOKEN);
