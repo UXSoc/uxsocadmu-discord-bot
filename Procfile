@@ -1,1 +1,1 @@
-Worker: npm start
+Worker: node --trace-warnings index.js
