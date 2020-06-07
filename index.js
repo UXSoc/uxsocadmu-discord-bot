@@ -72,91 +72,91 @@ client.on('message', async message => {
     }
     else {
         switch (args[0]) {
-            case 'play':
+            // case 'play':
 
-                function play(connection, message) {
-                    let server = servers[message.guild.id];
+            //     function play(connection, message) {
+            //         let server = servers[message.guild.id];
 
-                    server.dispatcher = connection.play(ytdl(server.queue[0], { filter: "audioonly" }));
-                    server.dispatcher.on("finish", function () {
-                        server.queue.shift()
-                        if (server.queue[0]) {
-                            play(connection, message)
-                        }
-                        else if (server.queue[0] >= 1) {
-                            server.queue.push(args[1]);
-                            message.channel.send("Added song to the queue!");
-                        }
-                        else {
-                            connection.disconnect();
-                        }
-                    });
-                }
+            //         server.dispatcher = connection.play(ytdl(server.queue[0], { filter: "audioonly" }));
+            //         server.dispatcher.on("finish", function () {
+            //             server.queue.shift()
+            //             if (server.queue[0]) {
+            //                 play(connection, message)
+            //             }
+            //             else if (server.queue[0] >= 1) {
+            //                 server.queue.push(args[1]);
+            //                 message.channel.send("Added song to the queue!");
+            //             }
+            //             else {
+            //                 connection.disconnect();
+            //             }
+            //         });
+            //     }
 
-                if (!args[1]) {
-                    message.channel.send("Please provide a link!");
-                    return;
-                }
-                if (!message.member.voice.channel) {
-                    message.channel.send("Hi UXer! We can't jam with you if you are not in a voice channel. Tune-in now <3 :)");
-                    return;
-                }
-                if (!servers[message.guild.id]) servers[message.guild.id] = {
-                    queue: []
-                }
+            //     if (!args[1]) {
+            //         message.channel.send("Please provide a link!");
+            //         return;
+            //     }
+            //     if (!message.member.voice.channel) {
+            //         message.channel.send("Hi UXer! We can't jam with you if you are not in a voice channel. Tune-in now <3 :)");
+            //         return;
+            //     }
+            //     if (!servers[message.guild.id]) servers[message.guild.id] = {
+            //         queue: []
+            //     }
 
-                let server = servers[message.guild.id];
-                server.queue.push(args[1]);
-                if (!message.guild.voiceChannel) message.member.voice.channel.join().then(function (connection) {
-                    play(connection, message);
-                })
+            //     let server = servers[message.guild.id];
+            //     server.queue.push(args[1]);
+            //     if (!message.guild.voiceChannel) message.member.voice.channel.join().then(function (connection) {
+            //         play(connection, message);
+            //     })
 
-                break;
+            //     break;
 
-            case 'skip':
-                server = servers[message.guild.id];
-                if (server.dispatcher) server.dispatcher.end();
-                message.channel.send("Awwww...Skipped song!")
-                break;
+            // case 'skip':
+            //     server = servers[message.guild.id];
+            //     if (server.dispatcher) server.dispatcher.end();
+            //     message.channel.send("Awwww...Skipped song!")
+            //     break;
 
-            case 'stop':
-                server = servers[message.guild.id];
-                if (message.guild.voice.connection) {
-                    for (let i = server.queue.length - 1; i >= 0; i--) {
-                        server.queue.splice(i, 1);
-                    }
-                    server.dispatcher.end();
-                    message.channel.send("Ended the jamming session! I will leave now :(")
-                    console.log('stopped the queue');
-                }
-                else {
-                    connection.disconnect();
-                }
-                break;
+            // case 'stop':
+            //     server = servers[message.guild.id];
+            //     if (message.guild.voice.connection) {
+            //         for (let i = server.queue.length - 1; i >= 0; i--) {
+            //             server.queue.splice(i, 1);
+            //         }
+            //         server.dispatcher.end();
+            //         message.channel.send("Ended the jamming session! I will leave now :(")
+            //         console.log('stopped the queue');
+            //     }
+            //     else {
+            //         connection.disconnect();
+            //     }
+            //     break;
 
-            case 'resume':
-                server = servers[message.guild.id];
-                server.dispatcher.resume();
-                message.channel.send("Let's rock and roll!")
-                break;
+            // case 'resume':
+            //     server = servers[message.guild.id];
+            //     server.dispatcher.resume();
+            //     message.channel.send("Let's rock and roll!")
+            //     break;
 
-            case 'pause':
-                server = servers[message.guild.id];
-                server.dispatcher.pause();
-                message.channel.send("Pausing the song now! Will wait for you to play it again hihi")
-                break;
+            // case 'pause':
+            //     server = servers[message.guild.id];
+            //     server.dispatcher.pause();
+            //     message.channel.send("Pausing the song now! Will wait for you to play it again hihi")
+            //     break;
 
-            case 'queue':
-                server = servers[message.guild.id];
-                let output = "";
-                let count = 1;
+            // case 'queue':
+            //     server = servers[message.guild.id];
+            //     let output = "";
+            //     let count = 1;
 
-                server.queue.forEach(function (entry) {
-                    output = output + count + "." + entry + "\n";
-                    count++;
-                });
-                message.channel.send("Songs in queue:" + "\n" + output);
-                break;
+            //     server.queue.forEach(function (entry) {
+            //         output = output + count + "." + entry + "\n";
+            //         count++;
+            //     });
+            //     message.channel.send("Songs in queue:" + "\n" + output);
+            //     break;
 
             case 'announcements':
                 message.channel.send(callAnnouncement());
@@ -174,22 +174,22 @@ client.on('message', async message => {
                         { name: '!faqs', value: 'answers some questions in navigating our server' },
                     )
                     .setTimestamp();
-                const Embed2 = new Discord.MessageEmbed()
-                    .setColor("#008ed4")
-                    .setTitle('PLAYING MUSIC')
-                    .addFields(
-                        { name: '!play <youtube link>', value: 'plays the audio of the selected video from youtube.' },
-                        { name: '!pause', value: 'pauses current track on queue.' },
-                        { name: '!skip', value: 'skips to the next song on queue.' },
-                        { name: '!stop', value: 'stops every song on queue.' },
-                        { name: '!queue', value: 'shows all track on queue' },
-                    )
-                    .setTimestamp();
+                // const Embed2 = new Discord.MessageEmbed()
+                //     .setColor("#008ed4")
+                //     .setTitle('PLAYING MUSIC')
+                //     .addFields(
+                //         { name: '!play <youtube link>', value: 'plays the audio of the selected video from youtube.' },
+                //         { name: '!pause', value: 'pauses current track on queue.' },
+                //         { name: '!skip', value: 'skips to the next song on queue.' },
+                //         { name: '!stop', value: 'stops every song on queue.' },
+                //         { name: '!queue', value: 'shows all track on queue' },
+                //     )
+                //     .setTimestamp();
 
                 message.channel.send("Hi @" + member + "! Check your DMs :)");
                 message.author.send("Hi @" + member + "! Here is the list of UXSoc Bot commands available!");
                 message.author.send(Embed);
-                message.author.send(Embed2);
+                // message.author.send(Embed2);
                 break;
 
             case 'basics':
@@ -207,7 +207,7 @@ client.on('message', async message => {
                     )
                     .setTimestamp();
 
-                message.channel.send("Hi @" + member2 + "! Check your DMs :)");
+                message.channel.send("Hi @" + member2 + "! Check my DMs :)");
                 message.author.send("Hi @" + member2 + "! Here are some instructions on how you can get started :)");
                 message.author.send(help);
                 break;
