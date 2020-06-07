@@ -41,12 +41,6 @@ client.on('ready', () => {
 
     const job = new cron.CronJob('0 0 12 * * 1,3,5', () => {
         const announcement = client.channels.cache.find(channel => channel.id === '714833144410538024');
-        // const embed = new Discord.MessageEmbed()
-        //     .setColor('#008ed4')
-        //     .setTitle('ANNOUNCEMENTS')
-        //     .setAuthor("From the Mafia")
-        //     .setDescription('1. UXSoc Apps are still running. Tap more people to apply. \n 2. We have a meeting this week! Please wait for further announcements')
-        //     .setTimestamp()
         announcement.send(callAnnouncement());
     });
 
@@ -147,7 +141,7 @@ client.on('message', async message => {
                 break;
 
             case 'pause':
-                // let server = servers[message.guild.id];
+                server = servers[message.guild.id];
                 server.dispatcher.pause();
                 message.channel.send("Pausing the song now! Will wait for you to play it again hihi")
                 break;
@@ -165,12 +159,6 @@ client.on('message', async message => {
                 break;
 
             case 'announcements':
-                // const embed = new Discord.MessageEmbed()
-                //     .setColor('#008ed4')
-                //     .setTitle('ANNOUNCEMENTS')
-                //     .setAuthor("From the Mafia")
-                //     .setDescription('1. UXSoc Apps are still running. Tap more people to apply. \n 2. We have a meeting this week! Please wait for further announcements')
-                //     .setTimestamp()
                 message.channel.send(callAnnouncement());
                 break;
 
@@ -244,10 +232,8 @@ client.on('message', async message => {
             case 'info':
                 const member4 = message.member.user.tag;
                 message.channel.send("Hello there " + member4 + "! I am UXSoc Bot version 1.0 :) \nType !help to get started.");
-
         }
     }
-
 });
 
 client.login(TOKEN);
