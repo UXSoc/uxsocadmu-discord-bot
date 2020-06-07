@@ -5,7 +5,7 @@ const cron = require('cron');
 require('dotenv').config();
 
 
-const botClient = new Discord.Client();
+const client = new Discord.Client();
 
 const TOKEN = process.env.DISCORD_BOT_TOKEN;
 
@@ -25,11 +25,11 @@ function callAnnouncement() {
     return embed;
 }
 
-botClient.on('ready', () => {
-    console.log('UXSoc Bot' + " version " + version + "is now up and running <3");
+client.on('ready', () => {
+    console.log('UXSoc Bot' + " version " + version + " is now up and running <3");
 
     const morning = new cron.CronJob('0 0 9 * * 1-5', () => {
-        var morningMessage = botClient.channels.cache.find(channel => channel.id === '714833144410538024');
+        var morningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
         const morningEmbed = new Discord.MessageEmbed()
             .setColor('#008ed4')
             .setTitle('Good Morning UXers! Wishing @everyone a good day ahead :)')
@@ -40,7 +40,7 @@ botClient.on('ready', () => {
     morning.start();
 
     const job = new cron.CronJob('0 0 12 * * 1,3,5', () => {
-        var announcement = botClient.channels.cache.find(channel => channel.id === '714833144410538024');
+        var announcement = client.channels.cache.find(channel => channel.id === '714833144410538024');
         // const embed = new Discord.MessageEmbed()
         //     .setColor('#008ed4')
         //     .setTitle('ANNOUNCEMENTS')
@@ -53,7 +53,7 @@ botClient.on('ready', () => {
     job.start();
 
     const evening = new cron.CronJob('0 0 21 * * 1-5', () => {
-        var morningMessage = botClient.channels.cache.find(channel => channel.id === '714833144410538024');
+        var morningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
         const morningEmbed = new Discord.MessageEmbed()
             .setColor('#008ed4')
             .setTitle('Good Night UXers! Rest well and see you again tomorrow :)')
@@ -64,12 +64,12 @@ botClient.on('ready', () => {
     evening.start();
 });
 
-botClient.on("guildMemberAdd", member => {
+client.on("guildMemberAdd", member => {
     member.send("Welcome to official Discord sever of User Experience Society '20-'21! Type in !help to any channel in the server to get started :)")
         .catch(console.error);
 });
 
-botClient.on('message', async message => {
+client.on('message', async message => {
 
     let args = message.content.substring(prefix.length).split(" ");
 
@@ -249,4 +249,5 @@ botClient.on('message', async message => {
     }
 
 });
-botClient.login(TOKEN);
+
+client.login(TOKEN);
