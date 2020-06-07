@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const client = new Discord.Client();
 
-const TOKEN = process.env.BOT_TOKEN;
+const TOKEN = process.env.TOKEN;
 
 const prefix = "!";
 
