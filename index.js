@@ -27,7 +27,7 @@ botClient.on('ready', () => {
     console.log('UXSoc Bot' + " version " + version + "is now up and running <3");
 
     const morning = new cron.CronJob('0 0 9 * * 1-5', () => {
-        var morningMessage = botClient.channels.cache.find(channel => channel.id === '<channel id here>');
+        var morningMessage = botClient.channels.cache.find(channel => channel.id === '714833144410538024');
         const morningEmbed = new Discord.MessageEmbed()
             .setColor('#008ed4')
             .setTitle('Good Morning UXers! Wishing @everyone a good day ahead :)')
@@ -38,7 +38,7 @@ botClient.on('ready', () => {
     morning.start();
 
     const job = new cron.CronJob('0 0 12 * * 1,3,5', () => {
-        var announcement = botClient.channels.cache.find(channel => channel.id === '713088552518418432');
+        var announcement = botClient.channels.cache.find(channel => channel.id === '714833144410538024');
         // const embed = new Discord.MessageEmbed()
         //     .setColor('#008ed4')
         //     .setTitle('ANNOUNCEMENTS')
@@ -49,6 +49,17 @@ botClient.on('ready', () => {
     });
 
     job.start();
+
+    const evening = new cron.CronJob('0 0 21 * * 1-5', () => {
+        var morningMessage = botClient.channels.cache.find(channel => channel.id === '714833144410538024');
+        const morningEmbed = new Discord.MessageEmbed()
+            .setColor('#008ed4')
+            .setTitle('Good Night UXers! Rest well and see you again tomorrow :)')
+            .setTimestamp()
+        morningMessage.send(morningEmbed);
+    });
+
+    evening.start();
 });
 
 botClient.on("guildMemberAdd", member => {
