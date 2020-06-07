@@ -11,9 +11,9 @@ const TOKEN = process.env.TOKEN;
 
 const prefix = "!";
 
-var version = "1.0";
+const version = "1.0";
 
-var servers = {};
+let servers = {};
 
 function callAnnouncement() {
     const embed = new Discord.MessageEmbed()
@@ -29,7 +29,7 @@ client.on('ready', () => {
     console.log('UXSoc Bot' + " version " + version + " is now up and running <3");
 
     const morning = new cron.CronJob('0 0 9 * * 1-5', () => {
-        var morningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
+        const morningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
         const morningEmbed = new Discord.MessageEmbed()
             .setColor('#008ed4')
             .setTitle('Good Morning UXers! Wishing @everyone a good day ahead :)')
@@ -40,7 +40,7 @@ client.on('ready', () => {
     morning.start();
 
     const job = new cron.CronJob('0 0 12 * * 1,3,5', () => {
-        var announcement = client.channels.cache.find(channel => channel.id === '714833144410538024');
+        const announcement = client.channels.cache.find(channel => channel.id === '714833144410538024');
         // const embed = new Discord.MessageEmbed()
         //     .setColor('#008ed4')
         //     .setTitle('ANNOUNCEMENTS')
@@ -53,7 +53,7 @@ client.on('ready', () => {
     job.start();
 
     const evening = new cron.CronJob('0 0 21 * * 1-5', () => {
-        var morningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
+        const morningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
         const morningEmbed = new Discord.MessageEmbed()
             .setColor('#008ed4')
             .setTitle('Good Night UXers! Rest well and see you again tomorrow :)')
@@ -81,7 +81,7 @@ client.on('message', async message => {
             case 'play':
 
                 function play(connection, message) {
-                    var server = servers[message.guild.id];
+                    let server = servers[message.guild.id];
 
                     server.dispatcher = connection.play(ytdl(server.queue[0], { filter: "audioonly" }));
                     server.dispatcher.on("finish", function () {
@@ -111,7 +111,7 @@ client.on('message', async message => {
                     queue: []
                 }
 
-                var server = servers[message.guild.id];
+                let server = servers[message.guild.id];
                 server.queue.push(args[1]);
                 if (!message.guild.voiceChannel) message.member.voice.channel.join().then(function (connection) {
                     play(connection, message);
@@ -120,15 +120,15 @@ client.on('message', async message => {
                 break;
 
             case 'skip':
-                var server = servers[message.guild.id];
+                let server = servers[message.guild.id];
                 if (server.dispatcher) server.dispatcher.end();
                 message.channel.send("Awwww...Skipped song!")
                 break;
 
             case 'stop':
-                var server = servers[message.guild.id];
+                let server = servers[message.guild.id];
                 if (message.guild.voice.connection) {
-                    for (var i = server.queue.length - 1; i >= 0; i--) {
+                    for (let i = server.queue.length - 1; i >= 0; i--) {
                         server.queue.splice(i, 1);
                     }
                     server.dispatcher.end();
@@ -141,21 +141,21 @@ client.on('message', async message => {
                 break;
 
             case 'resume':
-                var server = servers[message.guild.id];
+                let server = servers[message.guild.id];
                 server.dispatcher.resume();
                 message.channel.send("Let's rock and roll!")
                 break;
 
             case 'pause':
-                var server = servers[message.guild.id];
+                let server = servers[message.guild.id];
                 server.dispatcher.pause();
                 message.channel.send("Pausing the song now! Will wait for you to play it again hihi")
                 break;
 
             case 'queue':
-                var server = servers[message.guild.id];
-                var output = "";
-                var count = 1;
+                let server = servers[message.guild.id];
+                let output = "";
+                let count = 1;
 
                 server.queue.forEach(function (entry) {
                     output = output + count + "." + entry + "\n";
