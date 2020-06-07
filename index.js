@@ -15,12 +15,13 @@ var version = "1.0";
 var servers = {};
 
 function callAnnouncement() {
-    return embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
         .setColor('#008ed4')
         .setTitle('ANNOUNCEMENTS')
         .setAuthor("From the Mafia")
         .setDescription('1. UXSoc Apps are still running. Tap more people to apply. \n 2. We have a meeting this week! Please wait for further announcements')
         .setTimestamp()
+    return embed;
 }
 
 botClient.on('ready', () => {
