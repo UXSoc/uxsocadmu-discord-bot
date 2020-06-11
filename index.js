@@ -28,7 +28,7 @@ function callAnnouncement() {
 client.on('ready', () => {
     console.log('UXSoc Bot' + " version " + version + " is now up and running <3");
 
-    const morning = new cron.CronJob('0 0 9 * * 1-5', () => {
+    const morning = new cron.CronJob('0 0 9 ? *', () => {
         const morningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
         const morningEmbed = new Discord.MessageEmbed()
             .setColor('#008ed4')
@@ -39,7 +39,7 @@ client.on('ready', () => {
 
     morning.start();
 
-    const job = new cron.CronJob('0 0 12 * * 1,3,5', () => {
+    const job = new cron.CronJob('0 0 12 ? *', () => {
         const announcement = client.channels.cache.find(channel => channel.id === '714833144410538024');
         announcement.send(callAnnouncement());
     });
@@ -47,7 +47,7 @@ client.on('ready', () => {
     job.start();
 
 
-    const evening = new cron.CronJob('0 0 21 * * 1-5', () => {
+    const evening = new cron.CronJob('0 0 21 ? *', () => {
         const eveningMessage = client.channels.cache.find(channel => channel.id === '714833144410538024');
         const eveningEmbed = new Discord.MessageEmbed()
             .setColor('#008ed4')
